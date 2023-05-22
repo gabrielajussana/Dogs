@@ -18,10 +18,11 @@ const useFetch = () => {
       json = null;
       setError(err.message);
     } finally {
+      var result = { response, json };
       setData(json);
       setLoading(false);
-      return { response, json };
     }
+    return result ;
   }, []);
 
   return {
