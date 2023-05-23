@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Feed = () => {
+const Photo = () => {
   return (
     <div>
-      Feed
+      photo
     </div>
   )
 }
 
-export default Feed;
+export default Photo;
