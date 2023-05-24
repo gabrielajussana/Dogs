@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './FeedPhotosItem.module.css';
+import Image from '../../Helper/Image';
 
 const FeedPhotoItem = ({ photo, setModalPhoto }) => {
   function handleClick() {
@@ -9,7 +10,7 @@ const FeedPhotoItem = ({ photo, setModalPhoto }) => {
   
   return (
     <li className={styles.photo} onClick={handleClick}>
-        <img src={photo.src} alt={photo.title} />
+        <Image src={photo.src} alt={photo.title}/>
         <span className={styles.vizualizacao}>{photo.acessos}</span>
     </li>
   )
@@ -17,7 +18,7 @@ const FeedPhotoItem = ({ photo, setModalPhoto }) => {
 
 FeedPhotoItem.propTypes = {
     photo: PropTypes.node.isRequired,
-    setModalPhoto: PropTypes.node.isRequired
+    setModalPhoto: PropTypes.func
   };
   
 

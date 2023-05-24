@@ -8,7 +8,6 @@ import styles from './FeedModal.module.css';
 import PhotoContent from '../Photo/PhotoContent';
 
 const FeedModal = ({photo, setModalPhoto}) => {
-
   const { data, error, loading, request } = useFetch();
 
   React.useEffect(() => {

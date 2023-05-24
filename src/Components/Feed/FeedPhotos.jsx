@@ -7,32 +7,40 @@ import Error from '../../Helper/Error';
 import Loading from '../../Helper/Loading';
 import styles from './FeedPhotos.module.css';
 
-const FeedPhotos = ({setModalPhoto}) => {
-
+const FeedPhotos = ({ page, user, setModalPhoto, setInfinite }) => {
   const { data, loading, error, request } = useFetch();
 
   React.useEffect(() => {
     async function fetchPhotos() {
-        const {url, options} = PHOTOS_GET({page: 1, total: 6, user: 0});
+        const total = 6;
+        const {url, options} = PHOTOS_GET({page, total, user});
         const {response, json} = await request(url, options)
-        console.log(json, data, loading, response)
+        if(response && response.ok && json.length < total) setInfinite(false) 
     }
     fetchPhotos();
-  }, [request]);
+  }, [request, user, page, setInfinite]);
 
   if(error) return <Error error={error} />
   if(loading) return <Loading />
   if(data) 
   return (
     <ul className={`${styles.feed} animeLeft`}>
-        {data.map(photo =>  <FeedPhotoItem key={photo.id} photo={photo} setModalPhoto={setModalPhoto}/>)}
+        {data.map((photo) =>  (
+        <FeedPhotoItem 
+          key={photo.id} 
+          photo={photo} 
+          setModalPhoto={setModalPhoto}/>
+        ))}
     </ul>
   );
   else return null;
 }
 
 FeedPhotos.propTypes = {
-  setModalPhoto: PropTypes.node.isRequired,
+  setModalPhoto: PropTypes.func,
+  setInfinite: PropTypes.func,
+  user: PropTypes.number,
+  page: PropTypes.number,
 };
 
 export default FeedPhotos;
