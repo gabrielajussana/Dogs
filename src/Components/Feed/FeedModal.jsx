@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import useFetch from '../../Hooks/useFetch';
-import Error from '../../Helper/Error';
-import Loading from '../../Helper/Loading';
+import Error from '../Helper/Error';
+import Loading from '../Helper/Loading';
 import { PHOTO_GET } from '../../api';
 import styles from './FeedModal.module.css';
 import PhotoContent from '../Photo/PhotoContent';
@@ -30,8 +30,8 @@ const FeedModal = ({photo, setModalPhoto}) => {
 }
 
 FeedModal.propTypes = {
-  photo: PropTypes.node.isRequired,
-  setModalPhoto: PropTypes.node.isRequired,
+  photo: PropTypes.object,
+  setModalPhoto: PropTypes.func,
 };
 
 

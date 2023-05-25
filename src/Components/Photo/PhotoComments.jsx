@@ -15,22 +15,27 @@ const PhotoComments = (props) => {
 
   return (
    <>
-    <ul ref={commentsSection} className={styles.comment}>
-      {comments.map(comment => <li key={comment.id}>
-        <b>{comment.comment_author}: </b>
-        <span>{comment.comment_content}</span>
-      </li>
+    <ul ref={commentsSection} className={`${styles.comment} ${props.single ? styles.single : ''}`}>
+      {comments.map(comment => 
+        <li key={comment.id}>
+          <b>{comment.comment_author}: </b>
+          <span>{comment.comment_content}</span>
+        </li>
       )}
     </ul>
-    {login && <PhotoCommentsForm id={props.id} setComments={setComments}/> }
+    {login && <PhotoCommentsForm 
+      single={props.single} 
+      id={props.id} 
+      setComments={setComments}/> }
    </>
   )
 }
 
 PhotoComments.propTypes = {
-  props: PropTypes.node.isRequired,
-  id: PropTypes.node.isRequired,
-  comments: PropTypes.node.isRequired,
+  props: PropTypes.array,
+  id: PropTypes.number,
+  comments: PropTypes.array,
+  single: PropTypes.bool
 }
 
 export default PhotoComments

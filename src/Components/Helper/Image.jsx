@@ -20,7 +20,7 @@ const Image = ({alt, ...props}) => {
 
 Image.propTypes = {
     alt: PropTypes.node.isRequired,
-    props: PropTypes.node.isRequired
+    props: PropTypes.array
 }
 
 export default Image;

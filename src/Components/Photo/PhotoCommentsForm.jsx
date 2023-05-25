@@ -2,11 +2,11 @@ import React from 'react';
 import useFetch from '../../Hooks/useFetch';
 import { COMMENT_POST } from '../../api';
 import PropTypes from 'prop-types';
-import Error from '../../Helper/Error';
+import Error from '../Helper/Error';
 import styles from './PhotoCommentsForm.module.css';
 import {ReactComponent as Enviar} from '../../Assets/enviar.svg';
 
-const PhotoCommentsForm = ({id, setComments}) => {  
+const PhotoCommentsForm = ({id, setComments, single}) => {  
   const [comment, setComment] = React.useState('');
   const {request, error} = useFetch();
 
@@ -21,7 +21,7 @@ const PhotoCommentsForm = ({id, setComments}) => {
   }
 
   return (
-    <form onSubmit={handleSubmit} className={styles.form}>
+    <form onSubmit={handleSubmit} className={`${styles.form} ${single ? styles.single : ''}`}>
       <textarea 
         id="comment"
         name="comment"
@@ -40,7 +40,8 @@ const PhotoCommentsForm = ({id, setComments}) => {
 
 PhotoCommentsForm.propTypes = {
     id: PropTypes.node.isRequired,
-    setComments: PropTypes.node.isRequired,
+    setComments: PropTypes.func,
+    single: PropTypes.bool
 }
 
 export default PhotoCommentsForm;

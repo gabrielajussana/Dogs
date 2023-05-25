@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './FeedPhotosItem.module.css';
-import Image from '../../Helper/Image';
+import Image from '../Helper/Image';
 
 const FeedPhotoItem = ({ photo, setModalPhoto }) => {
   function handleClick() {
@@ -17,7 +17,7 @@ const FeedPhotoItem = ({ photo, setModalPhoto }) => {
 }
 
 FeedPhotoItem.propTypes = {
-    photo: PropTypes.node.isRequired,
+    photo: PropTypes.object,
     setModalPhoto: PropTypes.func
   };
   
